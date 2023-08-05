@@ -1,0 +1,89 @@
+type() -> escribir
+
+
+🟣SHOULD
+🔸Buscame el elemento de get y debería existir
+🔸Verifica que un elemento existe en el DOM
+
+▪️SHOULD EXIST
+cy.get('.title').should('exist')
+
+▪️SHOULD HAVE
+TEXT
+ cy.get('.login_logo').should('have.text', 'Swag Labs')
+ VALUE
+  cy.get('#user-name').type('HOLA').should('have.value', 'HOLA')
+
+▪️SHOULD CONTAIN
+TEXT
+Para verificar si la cadena de caracteres que estamos pasando esta incluida
+  cy.get('.login_logo').should('contain.text', 'Labs')
+VALUE
+cy.get('#user-name').type('prueba')
+cy.get('#user-name').should('contain.value', 'eba')
+
+▪️SHOULD BE VISIBLE
+Cuando queremos validar q el elemento esta en el DOM y además no está oculto
+cy.get('.bm-burger-button').should('be.visible')
+
+▪️SHOULD BE CHECKED
+Para verificar que un checkbox o radio button está verificado
+cy.get('input[type="checkbox"]').eq(1).should('be.checked')
+
+Aquí he usado otra web -> https://the-internet.herokuapp.com/checkboxes
+
+▪️SHOULD NOT
+Verificar lo opuesto de todo lo anterior, queremos verificar que un inner text no contenga esos caracteres, que no este visible, que no este checked....
+
+cy.get('input[type="checkbox"]').eq(0).should('not.be.checked')
+
+
+
+🟣AS
+🔸Puedo poner alias
+
+cy.get('#user-name').as('nombreUsuario')
+cy.get('@nombreUsuario').type('Hola')       <-
+
+
+
+🟣CONTAINS
+🔸Para encontrar el div que contiene el texto 'Swag Labs', y me imprime su clase
+
+cy.contains('div', 'Swag Labs').then(title=>{
+    cy.log(title.attr('class'))
+})
+
+
+🟣FIND
+🔸Buscame el elemento de find dentro de get y dime si existe
+cy.get('.login_wrapper-inner').find('#user-name').should('exist')
+
+
+🟣FIRST
+🔸Me coje el primer elemento de la clase '.form_input' y me escribe
+cy.get('.form_input').first().type('HOLISSSSS')
+
+🟣LAST
+🔸Me coje el ultimo elemento de la clase '.form_input' y me escribe
+ cy.get('.form_input').last().type('HOLISSSSS')
+
+ 🟣EQ
+🔸Le decimos el elemento por el indice. empieza en 0. este seria el elemento 2
+cy.get('.form_input').eq(1).type('indicessss')
+
+ 🟣CLOSEST
+🔸Nos permite localizar un elemento q coincida con el selector o con sus ancestros
+si hay mas de uno con el mismo nombre, busca el más cercano
+
+cy.get('#user-name').closest('#login_button_container').then(parent=>{
+    cy.log(parent.attr('class'))
+})
+Y entonces nos imprime la clase
+
+ 🟣SHOULD EXIST
+🔸Verifica que un elemento existe en el DOM
+
+ 🟣CLOSEST
+🔸Me trae el elemento más cercano
+*En el proyecto final -> cart.elements.js

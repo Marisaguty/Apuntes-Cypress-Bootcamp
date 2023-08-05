@@ -1,0 +1,47 @@
+*ejemplos con web-> Swag Labs
+Podemos coger los selectores de distintas formas:
+
+🟣XPATH
+
+🔸Por sus propiedades
+
+//input[@class="nombreDeLaClase"]
+//input[@id="idDeLaClase"]
+//input[@name="nombreDeLaClase"] 
+//input[@class="nombreDeLaClase" and @id="idddd"] -> tb podemos poner "or" 
+
+🔸Inner TEXT
+
+//div[text()="texto"]
+//div[.="texto"]
+
+🔸Por su relacion con los elementos
+-Si es el siguiente elemento:
+    //div[@class="error-message-container"]/following-sibling::input
+                                                                ⬆️la etiqueta que sea
+-Si es el de antes:
+     //div[@id="login-button"]/preceding-sibling::div
+    -En el caso de que coincidiesen por ejmplo 3 divs le ponemos condiciones
+    //input[@id="login-button"]/preceding-sibling::div[@class="error-message-container"]
+        
+-Si es un hijo:
+    //div[@class="form_group"]/child::input[@id="password"]
+                               ⬆️descendant (todos los descendientes)
+
+
+
+🟣SELECTORES CSS 
+
+input[id="user-name"]
+
+🔸Por id: 
+#user-name
+
+🔸Por clase:
+.submit-button
+
+🔸Por su relación con otro elemento:
+#login_button_container>div       -> elemento con id = login_button_container su hijo div
+#login_button_container div  -> elemento con id = login_button_container busca a todo lo q este por debajo(hijos, nietos..)
+
+

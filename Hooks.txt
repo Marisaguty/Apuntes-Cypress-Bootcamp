@@ -1,0 +1,17 @@
+En el contexto de Cypress, los "hooks" son funciones que se utilizan para ejecutar código en momentos específicos durante la ejecución de las pruebas automatizadas. Estos hooks proporcionan una manera de configurar, preparar o limpiar el estado de la aplicación antes o después de ciertas acciones o eventos durante las pruebas.
+
+Resumen de los principales hooks en Cypress:
+
+🟣before: Este hook se ejecuta una vez, al comienzo de todas las pruebas. Se utiliza para realizar configuraciones globales o establecer el estado inicial de la aplicación antes de que comiencen las pruebas.
+
+🟣beforeEach: Este hook se ejecuta antes de cada prueba individual. Se utiliza para configurar el estado o realizar acciones necesarias antes de cada prueba para asegurar que las pruebas sean independientes y consistentes.
+
+🟣afterEach: Este hook se ejecuta después de cada prueba individual. Se utiliza para limpiar el estado o realizar acciones de limpieza después de cada prueba, independientemente de si la prueba ha tenido éxito o ha fallado.
+
+🟣after: Este hook se ejecuta una vez después de que todas las pruebas hayan finalizado. Se utiliza para realizar acciones de limpieza final o cerrar conexiones o recursos utilizados durante las pruebas.
+
+🟣beforeAll: Este hook se ejecuta una vez antes de que se inicie cualquier prueba. A diferencia de before, este se utiliza cuando se quiere preparar el estado de la aplicación antes de que comiencen todas las pruebas.
+
+🟣afterAll: Este hook se ejecuta una vez después de que todas las pruebas hayan finalizado. A diferencia de after, se utiliza cuando se quiere realizar acciones de limpieza o cierre después de que todas las pruebas hayan terminado.
+
+Los hooks en Cypress permiten una mayor flexibilidad y control sobre el flujo de las pruebas automatizadas, lo que facilita la preparación adecuada del entorno de prueba y la limpieza posterior, asegurando que las pruebas se ejecuten de manera confiable y coherente.

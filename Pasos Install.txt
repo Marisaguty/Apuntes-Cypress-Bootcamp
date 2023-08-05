@@ -1,0 +1,15 @@
+1. npm init -y
+2. npm install cypress
+3. npx cypress open
+Para ejecutarlo ->npx cypress run --headed
+
+
+- xit -> no ejecuta
+- it.only -> solo ejecuta esa prueba 
+
+describe('', ()=>{
+    it('', ()=>{
+        
+    })
+})
+

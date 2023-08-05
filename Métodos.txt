@@ -1,0 +1,42 @@
+🟣CLICK()
+🔸Tiene propiedades (mirar documentacion cypress):
+- {force: true} -> ej: si el boton no está visible te da click 
+- ej: cy.get('img').click('topRight') -> Haga clic en la esquina superior derecha del botón.
+-ej: cy.get('#top-banner').click(15, 40) -> coordenadas
+
+
+🟣TYPE()
+🔸Nos permite digitar información y darle a la tecla {enter} entre otras (mirar documentacion cypress): 
+-cy.get('#user-name').type('{enter}')
+cy.get('#user-name').type('Holis' + '{enter}')
+
+
+🟣CHECK() - UNCHECK()
+🔸Seleccionar checkbox o radio 
+cy.get('input[type="checkbox"]').eq(0).check()
+cy.get('input[type="checkbox"]').eq(1).uncheck()
+
+
+🟣WAIT() and TIMEOUT()
+🔸en milisegundos
+cy.wait(1000)    -> es una mala práctica
+
+mejor: 
+
+ cy.get('img[alt="Log in to Shopify"]', {timeout: 10000}).click()
+🔸A diferencia de wait, este espera hasta ...seg, si lo encuentra en el seg 1 le da click
+
+
+🟣CUSTOM COMMANDS
+🔸Para crear nuestros métodos
+🔸Pueden recibir parámetros o no 
+🔸Pueden tener return
+🔸Voy a la documentacion de cypress y copio en el archivo commands.js (support):
+
+Cypress.Commands.add('clickLink', (label) => {
+  cy.get('a').contains(label).click()
+})
+
+*ver el ejemplo en el archivo
+
+Luego lo llamamos -> cy.clickLink

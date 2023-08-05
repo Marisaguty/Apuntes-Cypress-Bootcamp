@@ -1,0 +1,109 @@
+1. npm init -y
+2. npm i cypress@12.13.0
+3. npx cypress open
+Para ejecutarlo ->npx cypress run --headed
+
+*Patron de diseño -> Page Object Model
+
+🟣PASOS CONFIGURAR ALLURE
+🔸En el proyecto final tengo instalado allure para el reporte de pruebas :
+
+🔸 $ npm i @shelex/cypress-allure-plugin@2.39.1
+
+🔸Copiamos estas lineas y las pegamos en el archivo de conf de cypress:
+
+const  allureWriter  =  require ( '@shelex/cypress-allure-plugin/writer' ) ; 
+
+setupNodeEvents ( on ,  config )  { 
+    allureWriter ( on ,  config ) ; 
+    return  config ; 
+
+🔸 cd support -> e2e.js -> copiamos:
+
+import '@shelex/cypress-allure-plugin';
+
+🔸Para ejecutarlo: 
+
+$ cypress run --headed --env allure=true
+Se me crea una caroeta -> allure-results
+
+🔸Instalar allure command line
+
+$ npm i allure-commandline@2.22.1
+
+🔸En package.json hago cambios : 
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generar-reporte": "allure generate allure-results -o  allure-report --clean"
+  },
+
+$ npm run generar-reporte
+
+
+🔸Descargar JAVA
+Me piden q me descarge JAVA para seguir, en esta web estan las indicaciones, pero no me funciona.
+https://www.oracle.com/java/technologies/downloads/#jdk20-windows
+https://guru99.es/install-java/
+
+
+
+
+🟣CASOS DE PRUEBAS FLAKY
+
+🔸En la carpeta de cypress.config -> 
+ retries: 1,    -> añadir esto en la primera linea
+ Es para que repita de nuevo si la prueba ha fallado 
+
+
+ ➡️La prueba de Login, es Flaky, no escribe el nombre de usuario completo.
+ Por lo que vamos a cambiar type por invoke.
+ ej: LoginElements.textboxes.username.invoke('val', username)
+
+
+
+➡️Generar string aleatorio (para registrarse)
+
+function makeid(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
+
+
+
+🟣ERROR POR LA WEB, NO POR cypress
+🔸Uncaught Exceptions
+Cypress.on('uncaught:exception', (err, runnable) => {
+  return false
+})
+🔸⬆️si aparece un error de la aplicación ignora y continua
+
+
+🟢RECOMENDADO:
+🔸cy.clearAllCookies()
+🔸cy.clearAllLocalStorage()
+
+🟢LIBRERIAS:
+🔸cypress-parallel  -> ejecutar pruebas en paralelo
+  $ npm i cypress-parallel
+  "cy:parallel" : "cypress-parallel -s ejecutar-pruebas -t 2 -d ./cypress/e2e/test" 
+  (no me funciona) ❓
+
+
+🟢Número tarjeta aleatorio -> dummy credit card number
+
+🟢Codigo para verificar mensaje de alerta
+     cy.on('window:alert', (str)=>{
+            expect(str).to.equal(mesage)
+
+
+🔴 Mirar video 75 -> buildspec.yml
+🔴video 76, 77-> agregar dependencias del sistema operativo para Codebuild -> aws
+🔴78, 79,80,81 (TODA LA SECCION 24) 
